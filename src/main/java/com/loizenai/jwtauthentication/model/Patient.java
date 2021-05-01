@@ -63,6 +63,7 @@ public class Patient {
 	
 	@Column(name="observations")
 	private String observations;
+	private String etat;
 	
 		
 		public Patient() {
