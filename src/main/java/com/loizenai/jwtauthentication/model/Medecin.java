@@ -29,7 +29,7 @@ public class Medecin {
 	@Column(name = "email")
 	private String email;
 	
-	
+	private int essai;
 	
 	@Column(name = "password")
 	private String password;
