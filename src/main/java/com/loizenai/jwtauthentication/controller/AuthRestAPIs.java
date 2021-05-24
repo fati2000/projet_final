@@ -15,15 +15,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.loizenai.jwtauthentication.exception.ResourceNotFoundException;
 import com.loizenai.jwtauthentication.message.request.LoginForm;
 import com.loizenai.jwtauthentication.message.request.SignUpForm;
 import com.loizenai.jwtauthentication.message.response.JwtResponse;
 import com.loizenai.jwtauthentication.message.response.ResponseMessage;
+import com.loizenai.jwtauthentication.model.Medecin;
 import com.loizenai.jwtauthentication.model.Role;
 import com.loizenai.jwtauthentication.model.RoleName;
 import com.loizenai.jwtauthentication.model.User;
@@ -41,7 +45,9 @@ public class AuthRestAPIs {
 
 	@Autowired
 	UserRepository userRepository;
+	
 
+	
 	@Autowired
 	RoleRepository roleRepository;
 
@@ -112,10 +118,13 @@ public class AuthRestAPIs {
 					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 			roles.add(userRole);			
 		}
+
 		
 		user.setRoles(roles);
 		userRepository.save(user);
 
 		return new ResponseEntity<>(new ResponseMessage("User "+ signUpRequest.getNom() + " is registered successfully!"), HttpStatus.OK);
 	}
+	
+
 }

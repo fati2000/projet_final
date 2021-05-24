@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.validation.constraints.*;
 
+
 public class SignUpForm {
     @NotBlank
     @Size(min = 3, max = 50)
@@ -23,13 +24,14 @@ public class SignUpForm {
     private String email;
     
     private Set<String> role;
-    
+
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
     private int age;
     private String adresse;
     private String sexe;
+    
     
     public String getSexe() {
 		return sexe;
@@ -113,4 +115,7 @@ public class SignUpForm {
     public void setRole(Set<String> role) {
     	this.role = role;
     }
+
+	
+    
 }
