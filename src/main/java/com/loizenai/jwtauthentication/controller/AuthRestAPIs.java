@@ -93,7 +93,7 @@ public class AuthRestAPIs {
 				encoder.encode(signUpRequest.getPassword()),signUpRequest.getAge(),signUpRequest.getVille(),signUpRequest.getAdresse(),signUpRequest.getSexe());
 		PatientProfile patient = new PatientProfile(signUpRequest.getNom(), signUpRequest.getPrenom(), 
 				signUpRequest.getCin(), signUpRequest.getEmail(),signUpRequest.getTel(),
-encoder.encode(signUpRequest.getPassword()),signUpRequest.getAge(),signUpRequest.getVille(),signUpRequest.getAdresse(),signUpRequest.getSexe(),null, null, null, null, null, null);
+encoder.encode(signUpRequest.getPassword()),signUpRequest.getAge(),signUpRequest.getVille(),signUpRequest.getAdresse(),signUpRequest.getSexe(),null, null,null, null, null, null, null);
 
 		Set<Role> roles = new HashSet<>(); 
 		if(signUpRequest.getRole() != null) {

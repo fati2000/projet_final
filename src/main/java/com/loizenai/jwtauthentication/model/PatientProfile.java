@@ -8,6 +8,7 @@ public class PatientProfile extends User {
 	private String effets_sec;
 	private String observations;
 	private String etatDeVaccination;
+	private String centre;
 	private Date dateDePremereDose;
 	private Date dateDeuxiemeeDose;
 	
@@ -17,22 +18,24 @@ public class PatientProfile extends User {
 	}
 	public PatientProfile(String prenom, String nom, 
 			String cin,String tel, String email, String password, int age,String ville,String adresse, String sexe, String atcds, String effets_sec, String observations, String etatDeVaccination,
-			Date dateDePremereDose, Date dateDeuxiemeeDose) {
+			String centre, Date dateDePremereDose, Date dateDeuxiemeeDose) {
 		super(prenom,nom,cin,tel,email,password,age,ville,adresse,sexe);
 		this.atcds = atcds;
 		this.effets_sec = effets_sec;
 		this.observations = observations;
+		this.centre=centre;
 		this.etatDeVaccination = etatDeVaccination;
 		this.dateDePremereDose = dateDePremereDose;
 		this.dateDeuxiemeeDose = dateDeuxiemeeDose;
 	}
 	
-	public PatientProfile(String atcds, String effets_sec, String observations, String etatDeVaccination,
+	public PatientProfile(String atcds, String effets_sec, String observations,String centre,  String etatDeVaccination,
 			Date dateDePremereDose, Date dateDeuxiemeeDose) {
 		super();
 		this.atcds = atcds;
 		this.effets_sec = effets_sec;
 		this.observations = observations;
+		this.centre=centre;
 		this.etatDeVaccination = etatDeVaccination;
 		this.dateDePremereDose = dateDePremereDose;
 		this.dateDeuxiemeeDose = dateDeuxiemeeDose;
@@ -72,6 +75,12 @@ public class PatientProfile extends User {
 	}
 	public void setDateDeuxiemeeDose(Date dateDeuxiemeeDose) {
 		this.dateDeuxiemeeDose = dateDeuxiemeeDose;
+	}
+	public String getCentre() {
+		return centre;
+	}
+	public void setCentre(String centre) {
+		this.centre = centre;
 	}
 	
 	
