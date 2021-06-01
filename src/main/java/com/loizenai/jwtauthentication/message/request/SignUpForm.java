@@ -28,6 +28,7 @@ public class SignUpForm {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+    private String tel;
     private int age;
     private String adresse;
     private String sexe;
@@ -115,6 +116,14 @@ public class SignUpForm {
     public void setRole(Set<String> role) {
     	this.role = role;
     }
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
 	
     

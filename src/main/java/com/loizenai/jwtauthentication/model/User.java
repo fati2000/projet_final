@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -22,14 +24,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-            "cin"
-        }),
-        @UniqueConstraint(columnNames = {
-            "email"
-        })
-})
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,13 +54,12 @@ public class User{
 	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
-
+	private String tel;
 	private int age;
     private String adresse;
     public String ville;
     private String sexe;
     
-    @NotBlank
     @Size(min=6, max = 100)
     private String password;
     
@@ -84,11 +78,12 @@ public class User{
     public User() {}
 
     public User(String firstname, String lastname, 
-    				String cin, String email, String password, int age,String ville,String adresse, String sexe) {
+    				String cin, String email,String tel, String password, int age,String ville,String adresse, String sexe) {
         this.nom = firstname;
         this.prenom = lastname;
         this.cin = cin;
         this.email = email;
+        this.tel=tel;
         this.password = password;
         this.adresse=adresse;
         this.ville=ville;
@@ -177,6 +172,14 @@ public class User{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
 	
 }

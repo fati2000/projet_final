@@ -31,8 +31,11 @@ import com.loizenai.jwtauthentication.model.Medecin;
 import com.loizenai.jwtauthentication.model.Role;
 import com.loizenai.jwtauthentication.model.RoleName;
 import com.loizenai.jwtauthentication.model.User;
+import com.loizenai.jwtauthentication.model.PatientProfile;
 import com.loizenai.jwtauthentication.repository.RoleRepository;
 import com.loizenai.jwtauthentication.repository.UserRepository;
+import com.loizenai.jwtauthentication.repository.PatientProfileRepo;
+
 import com.loizenai.jwtauthentication.security.jwt.JwtProvider;
 
 @CrossOrigin(origins = {"http://localhost:3000","http://localhost:8080" })
@@ -46,7 +49,8 @@ public class AuthRestAPIs {
 	@Autowired
 	UserRepository userRepository;
 	
-
+	@Autowired
+	PatientProfileRepo patientRepository;
 	
 	@Autowired
 	RoleRepository roleRepository;
@@ -85,8 +89,11 @@ public class AuthRestAPIs {
 
 		// Creating user's account
 		User user = new User(signUpRequest.getNom(), signUpRequest.getPrenom(), 
-								signUpRequest.getCin(), signUpRequest.getEmail(),
+								signUpRequest.getCin(), signUpRequest.getEmail(),signUpRequest.getTel(),
 				encoder.encode(signUpRequest.getPassword()),signUpRequest.getAge(),signUpRequest.getVille(),signUpRequest.getAdresse(),signUpRequest.getSexe());
+		PatientProfile patient = new PatientProfile(signUpRequest.getNom(), signUpRequest.getPrenom(), 
+				signUpRequest.getCin(), signUpRequest.getEmail(),signUpRequest.getTel(),
+encoder.encode(signUpRequest.getPassword()),signUpRequest.getAge(),signUpRequest.getVille(),signUpRequest.getAdresse(),signUpRequest.getSexe(),null, null, null, null, null, null);
 
 		Set<Role> roles = new HashSet<>(); 
 		if(signUpRequest.getRole() != null) {
@@ -118,10 +125,12 @@ public class AuthRestAPIs {
 					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 			roles.add(userRole);			
 		}
+		
 
 		
 		user.setRoles(roles);
-		userRepository.save(user);
+		patient.setRoles(roles);
+		patientRepository.save(patient);
 
 		return new ResponseEntity<>(new ResponseMessage("User "+ signUpRequest.getNom() + " is registered successfully!"), HttpStatus.OK);
 	}
